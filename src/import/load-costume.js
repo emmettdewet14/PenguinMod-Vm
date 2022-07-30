@@ -1,10 +1,22 @@
 const StringUtil = require('../util/string-util');
 const log = require('../util/log');
 const {loadSvgString, serializeSvgToString} = require('scratch-svg-renderer');
+const {parseVectorMetadata} = require('../serialization/tw-costume-import-export');
 
 const loadVector_ = function (costume, runtime, rotationCenter, optVersion) {
     return new Promise(resolve => {
         let svgString = costume.asset.decodeText();
+
+        if (typeof rotationCenter === 'undefined') {
+            const parsed = parseVectorMetadata(svgString);
+            if (parsed) {
+                svgString = parsed.source;
+                rotationCenter = parsed.rotationCenter;
+                costume.rotationCenterX = rotationCenter[0];
+                costume.rotationCenterY = rotationCenter[1];
+            }
+        }
+    
         // SVG Renderer load fixes "quirks" associated with Scratch 2 projects
         if (optVersion && optVersion === 2) {
             // scratch-svg-renderer fixes syntax that causes loading issues,
