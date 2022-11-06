@@ -1,3 +1,4 @@
+console.log('hi lmao');
 let _TextEncoder;
 if (typeof TextEncoder === 'undefined') {
     _TextEncoder = require('text-encoding').TextEncoder;
