@@ -22,7 +22,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
          github_token: ${{ secrets.GITHUB_TOKEN }}
-         publish_dir: ./build
+         publish_dir: ./dist
          publish_branch: gh-pages
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v2.0.1
