@@ -1,18 +1,20 @@
-name: Remote Dispatch Action Initiator
-#test
-on: [push]
-
+name: Build and Deploy
+env:
+    folder: src
+    token: ${{ secrets.t }}
+on:
+  workflow_dispatch:
+  push:
+permissions:
+  contents: write
 jobs:
-  ping-pong:
+  build-and-deploy:
+    concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
     runs-on: ubuntu-latest
     steps:
-      - name: Repository Dispatch
-        uses: peter-evans/repository-dispatch@v2.0.1
-        with:
-          token: ${{ secrets.t }}
-          event-type: update
-          repository: PenguinMod/PenguinMod-Gui
-      - name: Build
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+      - name: Generate Static Site🛠
         run: |
          npm install
          webpack --colors --bail
@@ -22,3 +24,9 @@ jobs:
          github_token: ${{ secrets.GITHUB_TOKEN }}
          publish_dir: ./build
          publish_branch: gh-pages
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v2.0.1
+        with:
+          token: ${{ secrets.t }}
+          event-type: update
+          repository: PenguinMod/PenguinMod-Gui
