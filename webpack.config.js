@@ -103,7 +103,7 @@ module.exports = [
                     loader: 'script-loader'
                 },
                 {
-                    test: require.resolve('scratch-blocks/dist/vertical.js'),
+                    test: require.resolve('scratch-blocks/shim/vertical.js'),
                     loader: 'expose-loader?Blockly'
                 },
                 {
