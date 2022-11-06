@@ -17,7 +17,7 @@ jobs:
       - name: Generate Static Site🛠
         run: |
          npm install
-         webpack --colors --bail
+         npm run build
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
