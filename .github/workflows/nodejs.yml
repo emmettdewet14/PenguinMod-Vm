@@ -15,7 +15,7 @@ jobs:
       - name: Build
         run: |
          npm install
-         webpack --progress --colors --bail
+         webpack --colors --bail
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
