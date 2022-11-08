@@ -21616,8 +21616,7 @@ const builtinExtensions = {
   // jwUnite: literal features that should of been added in the first place
   jwUnite: () => __webpack_require__(/*! ../extensions/jw_unite */ "./src/extensions/jw_unite/index.js"),
   // griffpatch: *silence*
-  griffpatch: () => __webpack_require__(/*! ../extensions/griffpatch_box2d */ "./src/extensions/griffpatch_box2d/index.js") //fresh_js: some js blocks i made like alert,prompt,confirm
-
+  griffpatch: () => __webpack_require__(/*! ../extensions/griffpatch_box2d */ "./src/extensions/griffpatch_box2d/index.js")
 }; // CCW limited
 
 const injectExtensions = {};
