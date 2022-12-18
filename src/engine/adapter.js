@@ -170,6 +170,7 @@ const adapter = function (e) {
     if (typeof e !== 'object') return;
     if (typeof e.xml !== 'object') return;
 
+    console.log(e)
     return domToBlocks(html.parseDOM(e.xml.outerHTML, {decodeEntities: true}));
 };
 
